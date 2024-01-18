@@ -9,5 +9,5 @@ export default async function index() {
   const res = await qwew();
   // console.log(users);
 
-  return <div>index{res.props.user.map((el) => el.email)}</div>;
+  return <div>index{res.props.user.email}</div>;
 }
