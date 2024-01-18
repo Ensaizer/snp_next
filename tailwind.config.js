@@ -11,9 +11,15 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
+  },
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ["emerald", "bumblebee"],
   },
   darkMode: "class",
   plugins: [require("tw-elements/dist/plugin.cjs"), require("daisyui")],
+
 }
 
