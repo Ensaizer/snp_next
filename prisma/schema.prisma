@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  logoPath String
+  products Product[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  products Product[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+
+model Product{
+  id Int @id @default(autoincrement())
+  article String
+  brandId Int 
+  categoryId Int
+  category Category @relation(fields: [categoryId], references: [id])
+  brand Brand @relation(fields: [brandId], references: [id])
+  deliveryTime DateTime
+  name String
+  description String
+  minOrder Int
+  multiplicity Int
+  price Int
+  stock Int
+  cartId Int
+  cart Cart @relation(fields: [cartId], references: [id])
+  entries Entry[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String
+  users User[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+model User {
+  id    Int     @id @default(autoincrement())
+  name String
+  email String  @unique
+  password String
+  phone String
+  userType String
+  deliveryAddress String
+  discount Int
+  roleId Int
+  cart Cart?
+  role Role @relation(fields: [roleId], references: [id])
+  organization Organization?
+  order Order[]
+  isApproved Boolean
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Organization {
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  KPP String
+  INN Int
+  legalAdress String
+  currAccount String
+  corrAccount String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Cart {
+  id Int @id @default(autoincrement())
+  productId Int
+  products Product[]
+  quantity Int
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  status String
+  deliveryAdress String
+  deliveryDate DateTime
+  deliveryType String
+  paymentType String
+  entry Entry[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Entry{
+  id Int @id @default(autoincrement())
+  productId Int 
+  product Product @relation(fields: [productId], references: [id])
+  quantity Int
+  price Int
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+}
