@@ -1,9 +1,12 @@
+import Header from "@/app/Header";
 
 
 export default function Home() {
   return (
     <>
-      <div>ololo</div>
+        <h1 className="text-3xl font-bold underline">
+            Hello world!
+        </h1>
     </>
   );
 }
