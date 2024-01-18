@@ -1,11 +1,18 @@
 import { SignJWT } from 'jose';
 import { NextResponse } from 'next/server';
 import { getJwtSecretKey } from '@/libs/auth';
+import prisma from '@/app/keke/prismaClient';
 
-
-export async function POST(request) {
+export async function POST(request: Request) {
   const body = await request.json();
-  if (body.username === 'admin' && body.password === 'admin') {
+  const username = await prisma.user.findFirst({
+    where: {
+      email: body.username,
+      password: body.password,
+      isApproved: true,
+    },
+  });
+  if (username) {
     const token = await new SignJWT({
       username: body.username,
     })

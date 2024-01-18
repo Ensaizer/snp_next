@@ -17,7 +17,7 @@ model Brand {
   logoPath String
   products Product[]
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 model Category {
@@ -25,7 +25,7 @@ model Category {
   name String
   products Product[]
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 
@@ -39,15 +39,15 @@ model Product{
   deliveryTime DateTime
   name String
   description String
-  minOrder Int
-  multiplicity Int
+  minOrder Int @default(1)
+  multiplicity Int @default(1)
   price Int
   stock Int
   cartId Int
   cart Cart @relation(fields: [cartId], references: [id])
   entries Entry[]
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 
@@ -56,7 +56,7 @@ model Role {
   name String
   users User[]
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 model User {
   id    Int     @id @default(autoincrement())
@@ -66,15 +66,15 @@ model User {
   phone String
   userType String
   deliveryAddress String
-  discount Int
+  discount Int @default(0)
   roleId Int
   cart Cart?
   role Role @relation(fields: [roleId], references: [id])
   organization Organization?
   order Order[]
-  isApproved Boolean
+  isApproved Boolean @default(false)
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 model Organization {
@@ -87,7 +87,7 @@ model Organization {
   currAccount String
   corrAccount String
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 model Cart {
@@ -98,7 +98,7 @@ model Cart {
   userId Int @unique
   user User @relation(fields: [userId], references: [id])
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 model Order {
@@ -112,7 +112,7 @@ model Order {
   paymentType String
   entry Entry[]
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now())
 }
 
 model Entry{
@@ -123,4 +123,6 @@ model Entry{
   price Int
   orderId Int
   order Order @relation(fields: [orderId], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 }
