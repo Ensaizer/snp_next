@@ -1,5 +1,4 @@
 import { JWTPayload, jwtVerify } from 'jose';
-
 export function getJwtSecretKey() {
   const secret = process.env.NEXT_PUBLIC_JWT_SECRET_KEY;
 
@@ -10,10 +9,10 @@ export function getJwtSecretKey() {
   return new TextEncoder().encode(secret);
 }
 
-export async function verifyJwtToken(token: string) {
+export async function verifyJwtToken(token: string | Uint8Array) {
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
-
+    console.log(token, payload);
     return payload;
   } catch (error) {
     return null;
