@@ -1,28 +1,17 @@
-
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import NavigateLink from "@/app/NavigateLink";
-import Logout from "@/app/Logout";
-import { cookies } from 'next/headers';
+import React from 'react';
+import Link from 'next/link';
+import NavigateLink from '@/app/NavigateLink';
+import Logout from '@/app/Logout';
 import authChecked from './login/authChecked';
 
-
 const links = [
-  {name: 'Главная', href: '/', classNameProps:"text-2xl px-10 hover:bg-accent"},
-  {name: 'Профиль', href: '/profile', classNameProps:"text-2xl px-10 hover:bg-accent"},
-  {name: 'Авторизация', href: '/login', classNameProps:"text-2xl px-10 hover:bg-accent"},
-  {name: 'Регистрация', href: '/registration', classNameProps:"text-2xl px-10 hover:bg-accent"},
+  { name: 'Главная', href: '/', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Профиль', href: '/profile', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Авторизация', href: '/login', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Регистрация', href: '/registration', classNameProps: 'text-2xl px-10 hover:bg-accent' },
 ];
 
-
-
-import Link from 'next/link';
-import Image from 'next/image';
-
-
 const Header = async () => {
-
   const auth = await authChecked();
   return (
     <header className="header">
@@ -73,10 +62,16 @@ const Header = async () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-3 flex gap-5">
-            {links.map(el => <NavigateLink name={el.name} href={el.href} key={el.name} classNameProps={el.classNameProps}/>)}
+            {links.map((el) => (
+              <NavigateLink
+                name={el.name}
+                href={el.href}
+                key={el.name}
+                classNameProps={el.classNameProps}
+              />
+            ))}
             <li>
-
-              <Logout/>
+              <Logout />
 
               <Link className="text-2xl px-10 hover:bg-accent" href="/">
                 Главная
@@ -104,7 +99,6 @@ const Header = async () => {
               <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
                 Выход
               </Link>
-
             </li>
           </ul>
         </div>
