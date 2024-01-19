@@ -1,6 +1,6 @@
 'use client';
-import Header from "@/app/Header";
-import Search from "./Search";
+import Header from "@/components/Header/Header";
+import Search from "../components/Search/Search";
 
 import { useAuth } from '@/hooks/useAuth';
 import Link from 'next/link';

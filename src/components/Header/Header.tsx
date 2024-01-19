@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import NavigateLink from "@/app/NavigateLink";
-import Logout from "@/app/Logout";
+import NavigateLink from "@/components/Header/NavigateLink";
+import Logout from "@/components/Header/Logout";
+import {useRouter} from "next/navigation";
 
 const links = [
   {name: 'Главная', href: '/', classNameProps:"text-2xl px-10 hover:bg-accent"},

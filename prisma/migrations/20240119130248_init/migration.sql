@@ -5,7 +5,7 @@ CREATE TABLE "Brand" (
     "description" TEXT NOT NULL,
     "logoPath" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Brand_pkey" PRIMARY KEY ("id")
 );
@@ -15,7 +15,7 @@ CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -29,13 +29,13 @@ CREATE TABLE "Product" (
     "deliveryTime" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "minOrder" INTEGER NOT NULL,
-    "multiplicity" INTEGER NOT NULL,
+    "minOrder" INTEGER NOT NULL DEFAULT 1,
+    "multiplicity" INTEGER NOT NULL DEFAULT 1,
     "price" INTEGER NOT NULL,
     "stock" INTEGER NOT NULL,
     "cartId" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -45,7 +45,7 @@ CREATE TABLE "Role" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
 );
@@ -59,11 +59,11 @@ CREATE TABLE "User" (
     "phone" TEXT NOT NULL,
     "userType" TEXT NOT NULL,
     "deliveryAddress" TEXT NOT NULL,
-    "discount" INTEGER NOT NULL,
+    "discount" INTEGER NOT NULL DEFAULT 0,
     "roleId" INTEGER NOT NULL,
-    "isApproved" BOOLEAN NOT NULL,
+    "isApproved" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -73,12 +73,13 @@ CREATE TABLE "Organization" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
     "KPP" TEXT NOT NULL,
-    "INN" INTEGER NOT NULL,
-    "legalAdress" TEXT NOT NULL,
+    "INN" TEXT NOT NULL,
+    "OGRN" TEXT NOT NULL,
+    "legalAddress" TEXT NOT NULL,
     "currAccount" TEXT NOT NULL,
     "corrAccount" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Organization_pkey" PRIMARY KEY ("id")
 );
@@ -90,7 +91,7 @@ CREATE TABLE "Cart" (
     "quantity" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
 );
@@ -105,7 +106,7 @@ CREATE TABLE "Order" (
     "deliveryType" TEXT NOT NULL,
     "paymentType" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -117,6 +118,8 @@ CREATE TABLE "Entry" (
     "quantity" INTEGER NOT NULL,
     "price" INTEGER NOT NULL,
     "orderId" INTEGER NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Entry_pkey" PRIMARY KEY ("id")
 );
