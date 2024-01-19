@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Header = async () => {
   return (
-    <header className="header">
+    <header className="header mb-10">
       <nav className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -85,7 +85,7 @@ const Header = async () => {
               fill="none"
               viewBox="0 0 32 32"
             >
-              <g clip-path="url(#a)">
+              <g clipPath="url(#a)">
                 <path
                   fill="#FFC44D"
                   d="m10 24-1-4-1-4-1-4-1-4h25l-2 14c-.14 1.04-.88 2-2 2H10Z"
@@ -96,9 +96,9 @@ const Header = async () => {
                 />
                 <path
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M8 16H2m7 4H3m4-8H1m25 4H11m14 4H12m15-8H10m0 12h17c1.125 0 1.862-.962 2-2l2-14H6L4 1H1m12 28a2 2 0 1 0-4.001.001A2 2 0 0 0 13 29Zm12 0a2 2 0 1 0-4.001.001A2 2 0 0 0 25 29Z"
                 />
               </g>

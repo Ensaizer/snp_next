@@ -43,8 +43,7 @@ model Product{
   multiplicity Int @default(1)
   price Int
   stock Int
-  cartId Int
-  cart Cart @relation(fields: [cartId], references: [id])
+  carts Cart[]
   entries Entry[]
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
@@ -68,10 +67,10 @@ model User {
   deliveryAddress String
   discount Int @default(0)
   roleId Int
-  cart Cart?
+  carts Cart[]
   role Role @relation(fields: [roleId], references: [id])
   organization Organization?
-  order Order[]
+  orders Order[]
   isApproved Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
@@ -82,7 +81,7 @@ model Organization {
   userId Int @unique
   user User @relation(fields: [userId], references: [id])
   KPP String
-  INN Int
+  INN String
   legalAdress String
   currAccount String
   corrAccount String
@@ -93,9 +92,9 @@ model Organization {
 model Cart {
   id Int @id @default(autoincrement())
   productId Int
-  products Product[]
+  products Product @relation(fields: [productId], references: [id])
   quantity Int
-  userId Int @unique
+  userId Int 
   user User @relation(fields: [userId], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @default(now())

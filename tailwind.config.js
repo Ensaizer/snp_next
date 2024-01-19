@@ -17,6 +17,9 @@ module.exports = {
   plugins: [require('daisyui')],
   daisyui: {
     themes: ["emerald", "bumblebee"],
+    container: {
+      center: true,
+    }
   },
   darkMode: "class",
   plugins: [require("tw-elements/dist/plugin.cjs"), require("daisyui")],
