@@ -6,7 +6,6 @@ export async function POST(request:Request){
     data.isApproved = false;
     data.roleId = +data.role;
     delete data.role;
-    console.log(data)
     const createUser = async () => {
         const user = await prisma.user.create({
               data,

@@ -1,6 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import NavigateLink from "@/app/NavigateLink";
+import Logout from "@/app/Logout";
+
+const links = [
+  {name: 'Главная', href: '/', classNameProps:"text-2xl px-10 hover:bg-accent"},
+  {name: 'Профиль', href: '/profile', classNameProps:"text-2xl px-10 hover:bg-accent"},
+  {name: 'Авторизация', href: '/login', classNameProps:"text-2xl px-10 hover:bg-accent"},
+  {name: 'Регистрация', href: '/registration', classNameProps:"text-2xl px-10 hover:bg-accent"},
+];
+
 
 const Header = async () => {
   return (
@@ -49,30 +59,9 @@ const Header = async () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-3 flex gap-5">
+            {links.map(el => <NavigateLink name={el.name} href={el.href} key={el.name} classNameProps={el.classNameProps}/>)}
             <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/">
-                Главная
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/profile">
-                Профиль
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/login">
-                Авторизация
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Выход
-              </Link>
+              <Logout/>
             </li>
           </ul>
         </div>
