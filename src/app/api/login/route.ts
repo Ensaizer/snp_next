@@ -2,13 +2,14 @@ import { SignJWT } from 'jose';
 import { NextResponse } from 'next/server';
 import { getJwtSecretKey } from '@/libs/auth';
 import prisma from '@/app/keke/prismaClient';
+import bcrypt from 'bcrypt';
 
 export async function POST(request: Request) {
   const body = await request.json();
   const username = await prisma.user.findFirst({
     where: {
       email: body.username,
-      password: body.password,
+      password: await bcrypt.hash(body.password, 10),
       isApproved: true,
     },
   });

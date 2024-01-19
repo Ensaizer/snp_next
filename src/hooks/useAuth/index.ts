@@ -16,7 +16,6 @@ export function useAuth() {
 
   React.useEffect(() => {
     getVerifiedtoken();
-    console.log('======')
   }, []);
 
   return auth;
