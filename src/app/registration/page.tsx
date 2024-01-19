@@ -8,7 +8,7 @@ const Registration = () => {
     const [isYr, setIsYr] = useState(false)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
-        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unkow as IUser;
+        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as IUser;
         console.log(formData)
         fetch('/api/registration', {
             method: 'POST',

@@ -1,8 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useAuth } from '@/hooks/useAuth';
+import { cookies } from 'next/headers';
+import authChecked from './login/authChecked';
 
 const Header = async () => {
+
+  const auth = await authChecked();
   return (
     <header className="header">
       <nav className="navbar bg-base-100">
@@ -34,9 +39,12 @@ const Header = async () => {
               <li>
                 <Link href="/profile">Профиль</Link>
               </li>
-              <li>
-                <Link href="/login">Авторизация</Link>
-              </li>
+              {!auth && (
+                <li>
+                  <Link href="/login">Авторизация</Link>
+                </li>
+              )}
+
               <li>
                 <Link href="/registration">Регистрация</Link>
               </li>
@@ -59,11 +67,14 @@ const Header = async () => {
                 Профиль
               </Link>
             </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/login">
-                Авторизация
-              </Link>
-            </li>
+            {!auth && (
+              <li>
+                <Link className="text-2xl px-10 hover:bg-accent" href="/login">
+                  Авторизация
+                </Link>
+              </li>
+            )}
+
             <li>
               <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
                 Регистрация
@@ -85,20 +96,17 @@ const Header = async () => {
               fill="none"
               viewBox="0 0 32 32"
             >
-              <g clip-path="url(#a)">
-                <path
-                  fill="#FFC44D"
-                  d="m10 24-1-4-1-4-1-4-1-4h25l-2 14c-.14 1.04-.88 2-2 2H10Z"
-                />
+              <g clipPath="url(#a)">
+                <path fill="#FFC44D" d="m10 24-1-4-1-4-1-4-1-4h25l-2 14c-.14 1.04-.88 2-2 2H10Z" />
                 <path
                   fill="#668077"
                   d="M23 27c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2Zm-12 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2Z"
                 />
                 <path
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M8 16H2m7 4H3m4-8H1m25 4H11m14 4H12m15-8H10m0 12h17c1.125 0 1.862-.962 2-2l2-14H6L4 1H1m12 28a2 2 0 1 0-4.001.001A2 2 0 0 0 13 29Zm12 0a2 2 0 1 0-4.001.001A2 2 0 0 0 25 29Z"
                 />
               </g>
