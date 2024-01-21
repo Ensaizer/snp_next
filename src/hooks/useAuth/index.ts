@@ -14,9 +14,8 @@ export function useAuth() {
     setAuth(verifiedToken);
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     getVerifiedtoken();
-    console.log('======')
   }, []);
 
   return auth;

@@ -10,8 +10,8 @@ const Registration = () => {
     const router = useRouter();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
-        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unkow as IUser;
-        console.log(formData)
+        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as IUser;
+
         const response = await fetch('/api/registration', {
             method: 'POST',
             headers: {

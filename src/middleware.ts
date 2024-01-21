@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { verifyJwtToken } from '@/libs/auth';
 
 const AUTH_PAGES = ['/login'];
 
 const isAuthPages = (url: string) => AUTH_PAGES.some((page) => page.startsWith(url));
 
-export async function middleware(request) {
+export async function middleware(request: NextRequest) {
   const { url, nextUrl, cookies } = request;
   const { value: token } = cookies.get('accessToken') ?? { value: null };
 

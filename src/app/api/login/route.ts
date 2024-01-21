@@ -1,17 +1,20 @@
 import { SignJWT } from 'jose';
 import { NextResponse } from 'next/server';
 import { getJwtSecretKey } from '@/libs/auth';
-import prisma from '@/app/keke/prismaClient';
+import prisma from '@/prismaClient';
+import bcrypt from 'bcrypt';
 
 export async function POST(request: Request) {
   const body = await request.json();
+
   const username = await prisma.user.findFirst({
     where: {
       email: body.username,
       password: body.password,
-      isApproved: true,
+      isApproved: false,
     },
   });
+
   if (username) {
     const token = await new SignJWT({
       username: body.username,
@@ -24,6 +27,7 @@ export async function POST(request: Request) {
       { success: true },
       { status: 200, headers: { 'content-type': 'application/json' } },
     );
+
     response.cookies.set({
       name: 'accessToken',
       value: token,
