@@ -107,8 +107,165 @@ const createOrg = async () => {
         })
         console.log(`Пользователь с id ${orCreated.id} успешно создан`)
     }
-}
+    const brands = [
+        {
+            name:'Volvo Construction',
+            description: 'одна из производственных компаний, входящих в концерн Volvo. Осуществляет разработку, производство и обслуживание строительно-дорожных машин под маркой Volvo, оборудования для строительной и смежных отраслей.',
+            logoPath: './VC.jpg'
+        },
+        {
+            name:'Volvo Penta',
+            description: 'Volvo Penta — шведская компания, входящая в Volvo Group, производитель судовых и промышленных двигателей.',
+            logoPath: './penta.jpg'
+        },
+        {
+            name:'Volvo Trucks',
+            description: 'шведская автомобилестроительная компания, один из мировых лидеров по производству тяжёлых грузовиков. В переводе с латыни «volvo» означает «я кручусь» или «я качусь». Принадлежит второму в мире по величине производителю грузовиков «Volvo Group».',
+            logoPath: './trucks.jpg'
+        },
+    ];
 
+    for (const br of brands) {
+        const brandCreated = await prisma.brand.create({
+            data: br
+        })
+        console.log(`Пользователь с id ${brandCreated.id} успешно создан`)
+    }
+
+    const categories = [
+        {
+            name: 'Двигатели'
+        },
+        {
+            name: 'Системы Охлаждения'
+        },
+        {
+            name: 'Сцепления'
+        },
+        {
+            name: 'Мосты и Ось'
+        },
+        {
+            name: 'Датчики и Электродетали'
+        },
+        {
+            name: 'Трансмиссия'
+        },
+        {
+            name: 'Топливная Система'
+        },
+    ];
+
+    for (const ct of categories) {
+        const categoryCreated = await prisma.category.create({
+            data: ct
+        })
+        console.log(`Пользователь с id ${categoryCreated.id} успешно создан`)
+    }
+
+    const carts = [
+        {
+            productId: 1,
+            quantity: 1,
+            userId: 4
+        },
+        {
+            productId: 2,
+            quantity: 1,
+            userId: 3
+        },
+        {
+            productId: 3,
+            quantity: 3,
+            userId: 2
+        },
+        {
+            productId: 4,
+            quantity: 2,
+            userId: 1
+        }
+    ]
+    for (const crt of carts) {
+        const crtCreated = await prisma.cart.create({
+            data: crt
+        })
+        console.log(`Пользователь с id ${crtCreated.id} успешно создан`)
+    }
+    const products = [
+        {
+            article: 'TAD1343GE_ORG_',
+            brandId: 2,
+            categoryId: 1,
+            deliveryTime: new Date(),
+            name: 'Двигатеь',
+            description: 'Новый оригинал Дизельный двигатель Volvo Penta TAD1343GE (Вольво Пента TAD1343GE ) онлайн на snb2b.ru ',
+            price: 9930,
+            stock: 1,
+            cartId: 1,
+        },
+        {
+            article: 'TAD1342GE_ORG_',
+            brandId: 2,
+            categoryId: 1,
+            deliveryTime: new Date(),
+            name: 'Двигатель',
+            description: 'Новый оригинал Дизельный двигатель Volvo Penta TAD1342GE (Вольво Пента TAD1342GE) онлайн на snb2b.ru',
+            price: 70030,
+            stock: 2,
+            cartId: 1,
+        },
+        {
+            article: '20758814_OEM_',
+            brandId: 1,
+            categoryId: 2,
+            deliveryTime: new Date(),
+            name: 'Интеркуллер Радиатора',
+            description: 'Новый оригинал MAHLE CI354000P Charge air cooler онлайн на snb2b.ru ',
+            price: 77065,
+            stock: 3,
+            cartId: 1,
+        },
+        {
+            article: '21083292_OEM_',
+            brandId: 3,
+            categoryId: 2,
+            deliveryTime: new Date(),
+            name: 'Радиатор',
+            description: 'Новый 21229195 Radiator онлайн на snb2b.ru',
+            price: 9930,
+            stock: 6,
+            cartId: 1,
+        },
+        {
+            article: '21615193 _ORG_',
+            brandId: 3,
+            categoryId: 3,
+            deliveryTime: new Date(),
+            name: 'Корзина сцепления',
+            description: 'Новый оригинал Volvo Trucks 21615193 онлайн на snb2b.ru',
+            price: 76600,
+            stock: 100,
+            cartId: 2,
+        },
+        {
+            article: '82421049_SRP_',
+            brandId: 2,
+            categoryId: 3,
+            deliveryTime: new Date(),
+            name: 'Заглушка рамки фары левая',
+            description: 'Новый 82421049 онлайн на snb2b.ru',
+            price: 12000,
+            stock: 100,
+            cartId: 1,
+        },
+    ]
+    for (const pr of products) {
+        const prCreated = await prisma.product.create({
+            data: pr
+        })
+        console.log(`Пользователь с id ${prCreated.id} успешно создан`)
+    }
+}
 
 
 
