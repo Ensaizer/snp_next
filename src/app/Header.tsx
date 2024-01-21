@@ -1,8 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import NavigateLink from '@/app/NavigateLink';
+import Logout from '@/app/Logout';
+import authChecked from './login/authChecked';
+
+const links = [
+  { name: 'Главная', href: '/', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Профиль', href: '/profile', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Авторизация', href: '/login', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+  { name: 'Регистрация', href: '/registration', classNameProps: 'text-2xl px-10 hover:bg-accent' },
+];
 
 const Header = async () => {
+  const auth = await authChecked();
   return (
     <header className="header mb-10">
       <nav className="navbar bg-base-100">
@@ -34,9 +44,12 @@ const Header = async () => {
               <li>
                 <Link href="/profile">Профиль</Link>
               </li>
-              <li>
-                <Link href="/login">Авторизация</Link>
-              </li>
+              {!auth && (
+                <li>
+                  <Link href="/login">Авторизация</Link>
+                </li>
+              )}
+
               <li>
                 <Link href="/registration">Регистрация</Link>
               </li>
@@ -49,30 +62,16 @@ const Header = async () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-3 flex gap-5">
+            {links.map((el) => (
+              <NavigateLink
+                name={el.name}
+                href={el.href}
+                key={el.name}
+                classNameProps={el.classNameProps}
+              />
+            ))}
             <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/">
-                Главная
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/profile">
-                Профиль
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/login">
-                Авторизация
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Выход
-              </Link>
+              <Logout />
             </li>
           </ul>
         </div>
@@ -86,10 +85,7 @@ const Header = async () => {
               viewBox="0 0 32 32"
             >
               <g clipPath="url(#a)">
-                <path
-                  fill="#FFC44D"
-                  d="m10 24-1-4-1-4-1-4-1-4h25l-2 14c-.14 1.04-.88 2-2 2H10Z"
-                />
+                <path fill="#FFC44D" d="m10 24-1-4-1-4-1-4-1-4h25l-2 14c-.14 1.04-.88 2-2 2H10Z" />
                 <path
                   fill="#668077"
                   d="M23 27c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2Zm-12 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2Z"

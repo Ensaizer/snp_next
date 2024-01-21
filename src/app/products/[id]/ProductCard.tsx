@@ -2,6 +2,7 @@ import React from "react";
 import AddToCard from "./AddToCard";
 
 const product = {
+  id:1,
   article: 'hn554987987',
   brand: 'gsgsgsg',
 category: 'fafaf',
@@ -14,7 +15,8 @@ price: 60000,
 stock: 1,
 entries: [],
 }
-export default function ProductCard() {
+export default function ProductCard({productId}) {
+  console.log(productId)
   return (
     <div className="flex">
     <div className="flex flex-wrap w-1/2">

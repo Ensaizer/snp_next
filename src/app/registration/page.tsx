@@ -2,21 +2,24 @@
 import React, {useState} from 'react';
 import './registration.scss'
 import type {IUser} from "@/types/types";
+import {redirect, useRouter} from "next/navigation";
 
 
 const Registration = () => {
-    const [isYr, setIsYr] = useState(false)
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
+    const [isYr, setIsYr] = useState(false);
+    const router = useRouter();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
-        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unkow as IUser;
+        const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as IUser;
         console.log(formData)
-        fetch('/api/registration', {
+        const response = await fetch('/api/registration', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
         })
+        if(response.ok) router.push('/')
     }
     return (
         <div className="flex items-center justify-center p-12">
@@ -180,7 +183,7 @@ const Registration = () => {
                                     INN:
                                 </label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     name="INN"
                                     id="INN"
                                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"

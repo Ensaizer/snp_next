@@ -1,19 +1,38 @@
 "use client";
 import React, { useState } from "react";
 
-export default function AddToCard({product}) {
-  const [count, setCount] = useState(0);
+export default function AddToCard({initproduct}) {
+  const product = {
+    id:1,
+    quantity :6,
+    multiplicity: 2,
+    minOrder: 2,
+  }
+  const user = {
+    id:1,
+  }
+  const [quantity, setQuantity] = useState(0);
+  const changeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) <= product.quantity && Number(e.target.value)%product.multiplicity === 0) {
+      setQuantity(Number(e.target.value))}
+  }
+  const decrementClickHandle = () => {
+    if (quantity > product.minOrder) setQuantity((prev)=> prev - product.multiplicity) 
+  }
+  const incrementClickHandle = () => {
+    if (quantity < product.quantity) setQuantity((prev)=> prev + product.multiplicity) 
+  }
   const handleAddToCart = async () =>{
-  if (count <=  product.quantity) {
+  if (quantity >= product.minOrder) {
     const res = await fetch('/api/cart', {
         method: 'POST',
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ quantity, productId:product.id, userId: user.id}),
       });
-
    }}
 
   return (
-    <form className="max-w-xs mx-auto">
+    <form className="max-w-xs mx-auto flex">
+      <div>
       <label
         htmlFor="quantity-input"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -22,7 +41,8 @@ export default function AddToCard({product}) {
         <button
           type="button"
           id="decrement-button"
-          data-input-counter-decrement="quantity-input"
+          onClick={decrementClickHandle}
+          data-input-quantityer-decrement="quantity-input"
           className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
         >
           <svg
@@ -34,9 +54,9 @@ export default function AddToCard({product}) {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 1h16"
             />
           </svg>
@@ -44,18 +64,20 @@ export default function AddToCard({product}) {
         <input
           type="text"
           id="quantity-input"
-          data-input-counter
-          data-input-counter-min="1"
-          data-input-counter-max="50"
+          data-input-quantityer
+          data-input-quantityer-min="1"
+          data-input-quantityer-max="50"
           aria-describedby="helper-text-explanation"
           className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={count}
+          value={quantity}
+          onChange={(e)=>changeHandler(e)}
           required
         />
         <button
           type="button"
           id="increment-button"
-          data-input-counter-increment="quantity-input"
+          onClick={incrementClickHandle}
+          data-input-quantityer-increment="quantity-input"
           className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
         >
           <svg
@@ -67,13 +89,17 @@ export default function AddToCard({product}) {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M9 1v16M1 9h16"
             />
           </svg>
         </button>
+      </div>
+      </div>
+      <div>
+      <button className='btn btn-secondary' disabled={!quantity}>Добавить в корзину</button>
       </div>
     </form>
   );
