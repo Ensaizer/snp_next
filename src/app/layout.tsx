@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Header from "@/app/Header";
+import { roboto } from './fonts'
+import Header from "@/components/Header/Header";
 import './global.scss'
 import Footer from './Footer';
+import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,9 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" data-theme="emerald">
-      <body className={inter.className} >
+
+        <body className={roboto.className} >
       <Header/>
-      {children}
+      <AppRouterCacheProvider> {children} </AppRouterCacheProvider>
       <Footer/>
       </body>
     </html>
