@@ -11,8 +11,7 @@ export default function Home() {
   // Request?
 
   const protectedx = cookies().has('accessToken');
-  // console.log(protectedx);
-  // const auth = useAuth();
+  
   return (
     <>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>

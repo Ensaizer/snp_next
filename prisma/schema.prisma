@@ -81,7 +81,8 @@ model Organization {
   userId Int @unique
   user User @relation(fields: [userId], references: [id])
   KPP String
-  INN String
+  INN Int
+  OGRN String
   legalAdress String
   currAccount String
   corrAccount String

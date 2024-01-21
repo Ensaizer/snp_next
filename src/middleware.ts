@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.delete('accessToken');
 
     return response;
-  }// Response -> data -> Page
+  }
 
   return NextResponse.next();
 }

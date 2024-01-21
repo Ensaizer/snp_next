@@ -6,7 +6,6 @@ const authChecked = async () => {
   const token = cookies().get('accessToken') ?? null;
   if(!token) return null;
   const verifiedToken = await verifyJwtToken(token?.value);
-  console.log(verifiedToken);
   return verifiedToken;
 };
 
