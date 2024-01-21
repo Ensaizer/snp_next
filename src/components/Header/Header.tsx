@@ -1,9 +1,6 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import NavigateLink from "@/components/Header/NavigateLink";
 import Logout from "@/components/Header/Logout";
-import {useRouter} from "next/navigation";
 import {AppBar, Box, Button, IconButton, Typography, Toolbar} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 const links = [
@@ -31,7 +28,6 @@ const Header = async () => {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 SNP
               </Typography>
-              {/*<Button color="inherit" component={<Link />} href={links[0].href}>Login</Button>*/}
               { links.map(el => <NavigateLink key={el.name} name={el.name} href={el.href}/>)}
               <Logout/>
             </Toolbar>
