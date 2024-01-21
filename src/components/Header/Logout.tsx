@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import {redirect} from "next/navigation";
+import {Button} from "@mui/material";
 
 const Logout = () => {
     const clickHandler = async() =>{
@@ -9,9 +10,9 @@ const Logout = () => {
     } ;
 
     return (
-        <button className="text-2xl px-10 hover:bg-accent" onClick={clickHandler}>
+        <Button color="inherit" onClick={clickHandler}>
             Выход
-        </button>
+        </Button>
     );
 };
 

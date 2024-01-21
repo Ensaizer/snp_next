@@ -2,18 +2,19 @@
 import React from 'react';
 import type {FC} from 'react';
 import Link from "next/link";
+import {Button} from "@mui/material";
 
 type TypeLinkProps = {
     name: string;
     href: string;
-    classNameProps: string
 }
-const NavigateLink:FC<TypeLinkProps> = ({name, href, classNameProps}) => {
+const NavigateLink:FC<TypeLinkProps> = ({name, href}) => {
 
     return (
-        <li>
-            <Link className={classNameProps} href={href}>{name}</Link>
-        </li>
+        <Link href={ href}>
+            <Button color="inherit" >{name}</Button>
+        </Link>
+
     );
 };
 
