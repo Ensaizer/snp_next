@@ -14,7 +14,7 @@ export function useAuth() {
     setAuth(verifiedToken);
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     getVerifiedtoken();
   }, []);
 

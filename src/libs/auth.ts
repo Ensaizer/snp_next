@@ -12,7 +12,7 @@ export function getJwtSecretKey() {
 export async function verifyJwtToken(token: string | Uint8Array) {
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
-    console.log(token, payload);
+
     return payload;
   } catch (error) {
     return null;

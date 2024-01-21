@@ -72,33 +72,6 @@ const Header = async () => {
             ))}
             <li>
               <Logout />
-
-              <Link className="text-2xl px-10 hover:bg-accent" href="/">
-                Главная
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/profile">
-                Профиль
-              </Link>
-            </li>
-            {!auth && (
-              <li>
-                <Link className="text-2xl px-10 hover:bg-accent" href="/login">
-                  Авторизация
-                </Link>
-              </li>
-            )}
-
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link className="text-2xl px-10 hover:bg-accent" href="/registration">
-                Выход
-              </Link>
             </li>
           </ul>
         </div>

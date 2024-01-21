@@ -68,7 +68,7 @@ model User {
   deliveryAddress String
   discount Int @default(0)
   roleId Int
-  cart Cart?
+  cart Cart[]
   role Role @relation(fields: [roleId], references: [id])
   organization Organization?
   order Order[]
@@ -83,6 +83,7 @@ model Organization {
   user User @relation(fields: [userId], references: [id])
   KPP String
   INN Int
+  OGRN String
   legalAdress String
   currAccount String
   corrAccount String
