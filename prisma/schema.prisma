@@ -65,15 +65,15 @@ model User {
   phone           String
   userType        String
   deliveryAddress String
-  discount        Int           @default(0)
-  roleId          Int
-  cart            Cart?
-  role            Role          @relation(fields: [roleId], references: [id])
-  organization    Organization?
-  order           Order[]
-  isApproved      Boolean       @default(false)
-  created_at      DateTime      @default(now())
-  updated_at      DateTime      @default(now())
+  discount Int @default(0)
+  roleId Int
+  carts Cart[]
+  role Role @relation(fields: [roleId], references: [id])
+  organization Organization?
+  orders Order[]
+  isApproved Boolean @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 }
 
 model Organization {
@@ -91,14 +91,14 @@ model Organization {
 }
 
 model Cart {
-  id         Int       @id @default(autoincrement())
-  productId  Int
-  products   Product[]
-  quantity   Int
-  userId     Int       @unique
-  user       User      @relation(fields: [userId], references: [id])
-  created_at DateTime  @default(now())
-  updated_at DateTime  @default(now())
+  id Int @id @default(autoincrement())
+  productId Int
+  products Product @relation(fields: [productId], references: [id])
+  quantity Int
+  userId Int 
+  user User @relation(fields: [userId], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 }
 
 model Order {

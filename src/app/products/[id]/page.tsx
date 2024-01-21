@@ -1,11 +1,11 @@
-import React from 'react';
-import type {FC} from 'react';
-const ProductPage: FC = () => {
-  return (
-      <h1>
-        Hello world
-      </h1>
-  );
-};
+import React from "react";
+import ProductCard from "./ProductCard";
 
-export default ProductPage;
+export default function ProductPage({params}) {
+  console.log(params)
+  return (
+    <div className="container mx-auto">
+      <ProductCard productId={params.id}/>
+    </div>
+);
+}

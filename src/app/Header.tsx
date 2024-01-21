@@ -14,7 +14,7 @@ const links = [
 const Header = async () => {
   const auth = await authChecked();
   return (
-    <header className="header">
+    <header className="header mb-10">
       <nav className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">

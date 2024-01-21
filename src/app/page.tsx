@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import Link from 'next/link';
 import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import {cookies} from 'next/headers'
+import Carousel from './Carousel';
 
 export default function Home() {
   // Request?
@@ -15,7 +16,8 @@ export default function Home() {
   return (
     <>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      {/* <Search /> */}
+      <Carousel/>
+      <Search />
          <h1>Public Home Page</h1>
 
       <header>
